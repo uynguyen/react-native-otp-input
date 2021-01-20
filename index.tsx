@@ -44,7 +44,9 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
 
     componentDidMount() {
         this.copyCodeFromClipBoardOnAndroid()
-        this.bringUpKeyBoardIfNeeded()
+        setTimeout(()=>{
+            this.bringUpKeyBoardIfNeeded();
+        },1000)
         this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.handleKeyboardDidHide)
     }
 
@@ -192,7 +194,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
                 <TextInput
                     testID="textInput"
                     underlineColorAndroid='rgba(0,0,0,0)'
-                    style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
+                    style={selectedIndex >= index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
                     ref={ref => { this.fields[index] = ref }}
                     onChangeText={text => {
                         this.handleChangeText(index, text)
