@@ -25,6 +25,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
     private timer?: NodeJS.Timeout;
     private hasCheckedClipBoard?: boolean;
     private clipBoardCode?: string;
+    private delay: number = 1000;
 
     constructor(props: InputProps) {
         super(props)
@@ -46,7 +47,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
         this.copyCodeFromClipBoardOnAndroid()
         setTimeout(()=>{
             this.bringUpKeyBoardIfNeeded();
-        },1000)
+        }, this.delay)
         this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.handleKeyboardDidHide)
     }
 
